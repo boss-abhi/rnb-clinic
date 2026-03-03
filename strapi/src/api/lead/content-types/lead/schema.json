@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "leads",
+  "info": {
+    "singularName": "lead",
+    "pluralName": "leads",
+    "displayName": "Lead",
+    "description": "Patient enquiries and appointment requests"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "patient_name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service"
+    },
+    "preferred_date": {
+      "type": "date"
+    },
+    "preferred_time": {
+      "type": "enumeration",
+      "enum": ["morning", "afternoon", "evening"]
+    },
+    "message": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["new", "contacted", "confirmed", "cancelled"],
+      "default": "new"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": ["contact_form", "appointment_form", "whatsapp"],
+      "default": "contact_form"
+    },
+    "ip_address": {
+      "type": "string"
+    }
+  }
+}
