@@ -1,15 +1,14 @@
 const { spawn } = require('child_process');
+const path = require('path');
 
-const child = spawn('npm', ['run', 'start'], {
+const strapiBin = path.join(__dirname, 'node_modules', '@strapi', 'strapi', 'bin', 'strapi.js');
+
+const child = spawn(process.execPath, [strapiBin, 'start'], {
   stdio: 'inherit',
-  shell: true,
   cwd: __dirname,
   env: process.env,
 });
 
-child.on('exit', (code) => {
-  process.exit(code ?? 0);
-});
-
+child.on('exit', (code) => process.exit(code ?? 0));
 process.on('SIGTERM', () => child.kill('SIGTERM'));
 process.on('SIGINT', () => child.kill('SIGINT'));
