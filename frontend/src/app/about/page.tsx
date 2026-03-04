@@ -44,16 +44,6 @@ type RenderTeamMember = {
   photo?: { alternativeText?: string | null } | null
 }
 
-const TEAM_IMAGE_FALLBACKS: Record<string, string> = {
-  'dr. bhashkar singh': '/team-bhaskar.jpg',
-  'dr. nilam singh': '/team-nilam-admin-ai-v4.png',
-  'dr. robins kumar': '/team-robin.jpg',
-}
-
-function getTeamImageFallback(name: string): string | null {
-  return TEAM_IMAGE_FALLBACKS[name.trim().toLowerCase()] || null
-}
-
 const FALLBACK_TEAM: RenderTeamMember[] = [
   {
     id: 1,
@@ -62,7 +52,7 @@ const FALLBACK_TEAM: RenderTeamMember[] = [
     qualifications: 'MPT (Neuro), BPT',
     experience_years: 12,
     bio: [{ children: [{ text: 'Expert in neurological rehabilitation, chronic pain management, and evidence-based physiotherapy care.' }] }],
-    photoUrl: '/team-bhaskar.jpg',
+    photoUrl: null,
   },
   {
     id: 2,
@@ -71,7 +61,7 @@ const FALLBACK_TEAM: RenderTeamMember[] = [
     qualifications: 'MPT (Ortho), BPT',
     experience_years: 10,
     bio: [{ children: [{ text: 'Specializes in orthopaedic recovery, women’s health physiotherapy, and post-surgical rehabilitation.' }] }],
-    photoUrl: '/team-nilam-admin-ai-v4.png',
+    photoUrl: null,
   },
   {
     id: 3,
@@ -80,7 +70,7 @@ const FALLBACK_TEAM: RenderTeamMember[] = [
     qualifications: 'BPT',
     experience_years: 8,
     bio: [{ children: [{ text: 'Focuses on sports injury rehab, mobility restoration, and long-term functional recovery plans.' }] }],
-    photoUrl: '/team-robin.jpg',
+    photoUrl: null,
   },
 ]
 
@@ -92,14 +82,10 @@ export default async function AboutPage() {
 
   const cmsTeam = teamRes.status === 'fulfilled' ? teamRes.value.data : []
   const team: RenderTeamMember[] = cmsTeam.length > 0
-    ? cmsTeam.map((m) => {
-        const remotePhoto = m.photo ? getStrapiImageUrl(m.photo) : null
-        const fallbackPhoto = getTeamImageFallback(m.name)
-        return {
-          ...m,
-          photoUrl: fallbackPhoto || remotePhoto,
-        }
-      })
+    ? cmsTeam.map((m) => ({
+        ...m,
+        photoUrl: m.photo ? getStrapiImageUrl(m.photo) : null,
+      }))
     : FALLBACK_TEAM
 
   const settings = settingsRes.status === 'fulfilled' ? settingsRes.value.data : null
