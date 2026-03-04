@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getTeamMembers, getSiteSettings } from '@/lib/strapi'
 import { buildMetadata } from '@/lib/seo'
-import { getStrapiImageUrl } from '@/lib/strapi'
 import SectionHeader from '@/components/ui/SectionHeader'
 import CTABanner from '@/components/home/CTABanner'
 
@@ -34,13 +33,58 @@ function extractBioText(bio: unknown): string {
   return text
 }
 
+type RenderTeamMember = {
+  id: number
+  name: string
+  designation?: string | null
+  qualifications?: string | null
+  experience_years?: number | null
+  bio?: unknown
+  photoUrl?: string | null
+  photo?: { alternativeText?: string | null } | null
+}
+
+const FALLBACK_TEAM: RenderTeamMember[] = [
+  {
+    id: 1,
+    name: 'Dr. Bhashkar Singh',
+    designation: 'Chief Physiotherapist',
+    qualifications: 'MPT (Neuro), BPT',
+    experience_years: 12,
+    bio: [{ children: [{ text: 'Expert in neurological rehabilitation, chronic pain management, and evidence-based physiotherapy care.' }] }],
+    photoUrl: '/team-bhaskar.jpg',
+  },
+  {
+    id: 2,
+    name: 'Dr. Nilam Singh',
+    designation: 'Senior Physiotherapist',
+    qualifications: 'MPT (Ortho), BPT',
+    experience_years: 10,
+    bio: [{ children: [{ text: 'Specializes in orthopaedic recovery, women’s health physiotherapy, and post-surgical rehabilitation.' }] }],
+    photoUrl: '/team-nilam-admin-ai-v4.png',
+  },
+  {
+    id: 3,
+    name: 'Dr. Robins Kumar',
+    designation: 'Consultant Physiotherapist',
+    qualifications: 'BPT',
+    experience_years: 8,
+    bio: [{ children: [{ text: 'Focuses on sports injury rehab, mobility restoration, and long-term functional recovery plans.' }] }],
+    photoUrl: '/team-robin.jpg',
+  },
+]
+
 export default async function AboutPage() {
   const [teamRes, settingsRes] = await Promise.allSettled([
-    getTeamMembers({ 'filters[featured][$eq]': true }),
+    getTeamMembers(),
     getSiteSettings(),
   ])
 
-  const team = teamRes.status === 'fulfilled' ? teamRes.value.data : []
+  const cmsTeam = teamRes.status === 'fulfilled' ? teamRes.value.data : []
+  const team: RenderTeamMember[] = cmsTeam.length > 0
+    ? cmsTeam.map((m) => ({ ...m, photoUrl: m.photo ? getStrapiImageUrl(m.photo) : null }))
+    : FALLBACK_TEAM
+
   const settings = settingsRes.status === 'fulfilled' ? settingsRes.value.data : null
 
   return (
@@ -121,7 +165,7 @@ export default async function AboutPage() {
             />
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {team.map((member) => {
-                const photoUrl = member.photo ? getStrapiImageUrl(member.photo) : null
+                const photoUrl = member.photoUrl || null
                 const bioText = extractBioText(member.bio)
 
                 return (

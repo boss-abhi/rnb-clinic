@@ -16,6 +16,13 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
+const FIXED_CONTACT = {
+  phone: '+91 70424 90276',
+  whatsapp: '+91 70424 90276',
+  address: '4th Floor, Park Square Building, near Cinema Plaza, Tharpakhna, Lalpur, Ranchi, Jharkhand 834001, India',
+  mapEmbed: 'https://www.google.com/maps?q=The%20RNB%20Clinic%20Ranchi%20Best%20Physiotherapy%20Multi%20Specilaist%20Neuro%20Rehab%20Post-Surgery%20Rehab%20Pain%20Relief%20Sports%20Injury%20Treatment&output=embed',
+}
+
 export default async function ContactPage() {
   let settings = null
   try {
@@ -24,7 +31,12 @@ export default async function ContactPage() {
   } catch { /* fallback */ }
 
   const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thernbclinic.com'
-  const waNumber = (settings?.whatsapp || settings?.phone || '').replace(/\D/g, '')
+  const phone = FIXED_CONTACT.phone
+  const whatsapp = FIXED_CONTACT.whatsapp
+  const email = settings?.email || 'info@thernbclinic.com'
+  const address = FIXED_CONTACT.address
+  const mapEmbed = FIXED_CONTACT.mapEmbed
+  const waNumber = whatsapp.replace(/\D/g, '')
 
   return (
     <>
@@ -51,17 +63,15 @@ export default async function ContactPage() {
           <div>
             <h2 className="text-2xl font-bold text-brand-neutral-900 mb-6">Get In Touch</h2>
             <div className="space-y-6">
-              {settings?.phone && (
-                <div className="flex gap-4 items-start">
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="text-brand-blue" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.89 12 19.79 19.79 0 011.9 3.43 2 2 0 013.88 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-neutral-900 mb-1">Phone</p>
-                    <a href={`tel:${settings.phone}`} className="text-brand-blue hover:underline">{settings.phone}</a>
-                  </div>
+              <div className="flex gap-4 items-start">
+                <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="text-brand-blue" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.89 12 19.79 19.79 0 011.9 3.43 2 2 0 013.88 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
                 </div>
-              )}
+                <div>
+                  <p className="font-semibold text-brand-neutral-900 mb-1">Phone</p>
+                  <a href={`tel:${phone}`} className="text-brand-blue hover:underline">{phone}</a>
+                </div>
+              </div>
 
               {waNumber && (
                 <div className="flex gap-4 items-start">
@@ -75,35 +85,39 @@ export default async function ContactPage() {
                 </div>
               )}
 
-              {settings?.email && (
-                <div className="flex gap-4 items-start">
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="text-brand-blue" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-neutral-900 mb-1">Email</p>
-                    <a href={`mailto:${settings.email}`} className="text-brand-blue hover:underline">{settings.email}</a>
-                  </div>
+              <div className="flex gap-4 items-start">
+                <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="text-brand-blue" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 </div>
-              )}
+                <div>
+                  <p className="font-semibold text-brand-neutral-900 mb-1">Email</p>
+                  <a href={`mailto:${email}`} className="text-brand-blue hover:underline">{email}</a>
+                </div>
+              </div>
 
-              {settings?.address && (
-                <div className="flex gap-4 items-start">
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="text-brand-blue" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-neutral-900 mb-1">Address</p>
-                    <p className="text-brand-neutral-900/60">{settings.address}</p>
-                  </div>
+              <div className="flex gap-4 items-start">
+                <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" className="text-brand-blue" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                 </div>
-              )}
+                <div>
+                  <p className="font-semibold text-brand-neutral-900 mb-1">Address</p>
+                  <p className="text-brand-neutral-900/60">{address}</p>
+                </div>
+              </div>
             </div>
 
             {/* Map embed */}
-            {settings?.google_maps_iframe && (
-              <div className="mt-8 rounded-2xl overflow-hidden border border-brand-neutral-100 shadow-sm h-64" dangerouslySetInnerHTML={{ __html: settings.google_maps_iframe }} />
-            )}
+            <div className="mt-8 rounded-2xl overflow-hidden border border-brand-neutral-100 shadow-sm h-64">
+              <iframe
+                src={mapEmbed}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="The RNB Clinic Ranchi Map"
+              />
+            </div>
           </div>
 
           {/* Right: Form */}
