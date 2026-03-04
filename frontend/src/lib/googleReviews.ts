@@ -32,7 +32,7 @@ export async function getGoogleReviews(limit = 6): Promise<GoogleReview[]> {
       'X-Goog-Api-Key': apiKey,
       'X-Goog-FieldMask': 'reviews',
     },
-    next: { revalidate: 3600 },
+    cache: 'no-store',
   })
 
   if (!res.ok) return []
