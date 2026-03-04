@@ -44,6 +44,16 @@ type RenderTeamMember = {
   photo?: { alternativeText?: string | null } | null
 }
 
+const TEAM_IMAGE_FALLBACKS: Record<string, string> = {
+  'dr. bhashkar singh': '/team-bhaskar.jpg',
+  'dr. nilam singh': '/team-nilam-admin-ai-v4.png',
+  'dr. robins kumar': '/team-robin.jpg',
+}
+
+function getTeamImageFallback(name: string): string | null {
+  return TEAM_IMAGE_FALLBACKS[name.trim().toLowerCase()] || null
+}
+
 const FALLBACK_TEAM: RenderTeamMember[] = [
   {
     id: 1,
@@ -82,7 +92,14 @@ export default async function AboutPage() {
 
   const cmsTeam = teamRes.status === 'fulfilled' ? teamRes.value.data : []
   const team: RenderTeamMember[] = cmsTeam.length > 0
-    ? cmsTeam.map((m) => ({ ...m, photoUrl: m.photo ? getStrapiImageUrl(m.photo) : null }))
+    ? cmsTeam.map((m) => {
+        const remotePhoto = m.photo ? getStrapiImageUrl(m.photo) : null
+        const fallbackPhoto = getTeamImageFallback(m.name)
+        return {
+          ...m,
+          photoUrl: fallbackPhoto || remotePhoto,
+        }
+      })
     : FALLBACK_TEAM
 
   const settings = settingsRes.status === 'fulfilled' ? settingsRes.value.data : null
