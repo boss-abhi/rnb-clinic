@@ -6,7 +6,8 @@ import { getInstagramVideosFromCms, toInstagramEmbedUrl } from '@/lib/instagramF
 import SectionHeader from '@/components/ui/SectionHeader'
 import CTABanner from '@/components/home/CTABanner'
 
-export const revalidate = 300
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
