@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
 
-const STRAPI_URL = process.env.STRAPI_API_URL || 'http://localhost:1337'
-const WRITE_TOKEN = process.env.STRAPI_WRITE_TOKEN || ''
+const LEADS_SHEET_WEBHOOK_URL = process.env.LEADS_SHEET_WEBHOOK_URL || ''
 
-// Simple in-memory rate limiter (resets on process restart; acceptable for single-server deploy)
+const SMTP_HOST = process.env.SMTP_HOST || ''
+const SMTP_PORT = Number(process.env.SMTP_PORT || 465)
+const SMTP_USER = process.env.SMTP_USER || ''
+const SMTP_PASS = process.env.SMTP_PASS || ''
+const LEADS_EMAIL_TO = process.env.LEADS_EMAIL_TO || ''
+
 const ipTimestamps = new Map<string, number[]>()
 const WINDOW_MS = 60_000
 const MAX_REQUESTS = 10
@@ -15,6 +20,50 @@ function isRateLimited(ip: string): boolean {
   timestamps.push(now)
   ipTimestamps.set(ip, timestamps)
   return false
+}
+
+async function pushToSheet(payload: Record<string, unknown>) {
+  if (!LEADS_SHEET_WEBHOOK_URL) return
+
+  try {
+    await fetch(LEADS_SHEET_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      cache: 'no-store',
+    })
+  } catch (err) {
+    console.error('Sheet webhook error:', err)
+  }
+}
+
+async function sendLeadEmail(payload: Record<string, unknown>) {
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !LEADS_EMAIL_TO) return
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: SMTP_PORT,
+      secure: SMTP_PORT === 465,
+      auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS,
+      },
+    })
+
+    const rows = Object.entries(payload)
+      .map(([key, value]) => `<tr><td style="padding:6px 10px;border:1px solid #ddd;"><b>${key}</b></td><td style="padding:6px 10px;border:1px solid #ddd;">${String(value ?? '')}</td></tr>`)
+      .join('')
+
+    await transporter.sendMail({
+      from: `RNB Clinic Website <${SMTP_USER}>`,
+      to: LEADS_EMAIL_TO,
+      subject: 'New Contact Lead - The RNB Clinic',
+      html: `<h3>New Contact Lead</h3><table style="border-collapse:collapse;">${rows}</table>`,
+    })
+  } catch (err) {
+    console.error('Lead email error:', err)
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -37,40 +86,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 })
   }
 
-  // Sanitise: only accept strings
   if (typeof patient_name !== 'string' || typeof phone !== 'string') {
     return NextResponse.json({ error: 'Invalid field types' }, { status: 400 })
   }
 
-  try {
-    const strapiRes = await fetch(`${STRAPI_URL}/api/leads`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${WRITE_TOKEN}`,
-      },
-      body: JSON.stringify({
-        data: {
-          patient_name: String(patient_name).slice(0, 200),
-          phone: String(phone).slice(0, 50),
-          email: email ? String(email).slice(0, 200) : null,
-          message: message ? String(message).slice(0, 1000) : null,
-          source: 'contact_form',
-          status: 'new',
-          ip_address: ip,
-        },
-      }),
-    })
-
-    if (!strapiRes.ok) {
-      const err = await strapiRes.text()
-      console.error('Strapi lead create error:', err)
-      // Still return success to avoid leaking info
-    }
-
-    return NextResponse.json({ success: true }, { status: 201 })
-  } catch (err) {
-    console.error('Contact API error:', err)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+  const leadPayload = {
+    source: 'contact_form',
+    patient_name: String(patient_name).slice(0, 200),
+    phone: String(phone).slice(0, 50),
+    email: email ? String(email).slice(0, 200) : '',
+    message: message ? String(message).slice(0, 1000) : '',
+    ip_address: ip,
+    submitted_at: new Date().toISOString(),
   }
+
+  await Promise.allSettled([
+    pushToSheet(leadPayload),
+    sendLeadEmail(leadPayload),
+  ])
+
+  return NextResponse.json({ success: true }, { status: 201 })
 }
