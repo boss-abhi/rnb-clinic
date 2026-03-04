@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getTeamMembers, getSiteSettings } from '@/lib/strapi'
+import { getTeamMembers, getSiteSettings, getStrapiImageUrl } from '@/lib/strapi'
 import { buildMetadata } from '@/lib/seo'
 import SectionHeader from '@/components/ui/SectionHeader'
 import CTABanner from '@/components/home/CTABanner'
