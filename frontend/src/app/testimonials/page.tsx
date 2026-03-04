@@ -33,20 +33,22 @@ export default async function TestimonialsPage() {
   let googleReviews: Awaited<ReturnType<typeof getGoogleReviews>> = []
   let instagramVideos: ReturnType<typeof getInstagramVideosFromCms> = []
 
-  try {
-    const [testimonialsRes, googleRes, settingsRes] = await Promise.all([
-      getTestimonials(),
-      getGoogleReviews(6),
-      getSiteSettings(),
-    ])
-    testimonials = testimonialsRes.data
-    googleReviews = googleRes
-    instagramVideos = getInstagramVideosFromCms(settingsRes.data?.instagram_reels)
-  } catch {
-    try {
-      const res = await getTestimonials()
-      testimonials = res.data
-    } catch { /* fallback */ }
+  const [testimonialsRes, googleRes, settingsRes] = await Promise.allSettled([
+    getTestimonials(),
+    getGoogleReviews(6),
+    getSiteSettings(),
+  ])
+
+  if (testimonialsRes.status === 'fulfilled') {
+    testimonials = testimonialsRes.value.data
+  }
+
+  if (googleRes.status === 'fulfilled') {
+    googleReviews = googleRes.value
+  }
+
+  if (settingsRes.status === 'fulfilled') {
+    instagramVideos = getInstagramVideosFromCms(settingsRes.value.data?.instagram_reels)
   }
 
   return (
