@@ -35,11 +35,11 @@ const securityHeaders = [
   },
 ]
 
-const RNB_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '/rnb-clinic'
+const RNB_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 const STRAPI_INTERNAL_URL = process.env.STRAPI_INTERNAL_URL || 'http://localhost:1337'
 
 const nextConfig: NextConfig = {
-  basePath: RNB_BASE_PATH,
+  basePath: RNB_BASE_PATH || undefined,
   trailingSlash: false,
   images: {
     dangerouslyAllowLocalIP: true,
@@ -71,12 +71,16 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
-    return [
-      // Preferred prefixed routes for local management
-      { source: `${RNB_BASE_PATH}/admin/:path*`, destination: `${STRAPI_INTERNAL_URL}/admin/:path*` },
-      { source: `${RNB_BASE_PATH}/api/:path*`, destination: `${STRAPI_INTERNAL_URL}/api/:path*` },
-      { source: `${RNB_BASE_PATH}/uploads/:path*`, destination: `${STRAPI_INTERNAL_URL}/uploads/:path*` },
+    const prefixedRoutes = RNB_BASE_PATH
+      ? [
+          { source: `${RNB_BASE_PATH}/admin/:path*`, destination: `${STRAPI_INTERNAL_URL}/admin/:path*` },
+          { source: `${RNB_BASE_PATH}/api/:path*`, destination: `${STRAPI_INTERNAL_URL}/api/:path*` },
+          { source: `${RNB_BASE_PATH}/uploads/:path*`, destination: `${STRAPI_INTERNAL_URL}/uploads/:path*` },
+        ]
+      : []
 
+    return [
+      ...prefixedRoutes,
       // Strapi admin XHR/asset endpoints that may be requested from absolute root paths
       { source: '/admin/:path*', destination: `${STRAPI_INTERNAL_URL}/admin/:path*` },
       { source: '/api/:path*', destination: `${STRAPI_INTERNAL_URL}/api/:path*` },
