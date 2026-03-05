@@ -22,6 +22,12 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
+const FIXED_CONTACT = {
+  phone: '+91 70424 90276',
+  whatsapp: '+91 70424 90276',
+  address: '4th Floor, Park Square Building, near Cinema Plaza, Tharpakhna, Lalpur, Ranchi, Jharkhand 834001, India',
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   let faviconUrl = '/favicon.ico'
   try {
@@ -60,17 +66,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Header />
         <main className="flex-1 pt-16 md:pt-20">{children}</main>
         <Footer
-          clinicName={settings?.clinic_name}
-          phone={settings?.phone}
-          email={settings?.email}
-          address={settings?.address}
-          whatsapp={settings?.whatsapp}
+          clinicName={settings?.clinic_name || 'The RNB Clinic'}
+          phone={FIXED_CONTACT.phone}
+          email={settings?.email || 'info@thernbclinic.com'}
+          address={FIXED_CONTACT.address}
+          whatsapp={FIXED_CONTACT.whatsapp}
           facebook_url={settings?.facebook_url}
           instagram_url={settings?.instagram_url}
           youtube_url={settings?.youtube_url}
           footer_tagline={settings?.footer_tagline}
         />
-        <FloatingActions phone={settings?.phone} whatsapp={settings?.whatsapp} />
+        <FloatingActions phone={FIXED_CONTACT.phone} whatsapp={FIXED_CONTACT.whatsapp} />
 
         {/* Google Analytics — only injected when GA_ID is set */}
         {GA_ID && (
