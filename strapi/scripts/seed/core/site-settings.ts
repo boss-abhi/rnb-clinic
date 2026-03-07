@@ -5,6 +5,8 @@ export async function seedSiteSettings(): Promise<void> {
   await upsertSingleType('site-setting', {
     clinic_name: 'The RNB Clinic',
     tagline: 'Expert Physiotherapy & Rehabilitation in Ranchi',
+    meta_description:
+      'The RNB Clinic in Ranchi offers expert physiotherapy for pain relief, sports injuries, post-surgery rehab, and neurological recovery with personalized care plans.',
     phone: '+91 70424 90276',
     whatsapp: '+91 70424 90276',
     email: 'thernbclinic@gmail.com',

@@ -18,6 +18,9 @@
     "tagline": {
       "type": "string"
     },
+    "meta_description": {
+      "type": "text"
+    },
     "phone": {
       "type": "string"
     },
