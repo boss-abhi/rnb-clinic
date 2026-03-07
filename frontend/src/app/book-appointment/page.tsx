@@ -8,7 +8,7 @@ export const revalidate = 600
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: 'Physiotherapy in Ranchi, Jharkhand | Book Appointment at The RNB Clinic',
+    title: 'Online Physio Consultation Booking, Fast Assessment & Personalized Treatment Plan',
     description: 'Book your consultation for Physiotherapy in Ranchi, Jharkhand at The RNB Clinic in minutes. Start personalized Physiotherapy in Ranchi, Jharkhand with expert assessment, treatment planning, and guided recovery support.',
     path: '/book-appointment',
     keywords: [

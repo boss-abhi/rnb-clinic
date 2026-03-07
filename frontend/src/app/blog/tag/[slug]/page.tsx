@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const tag = res.data.find((t) => t.slug === slug)
     if (!tag) return {}
     return buildMetadata({
-      title: `Physiotherapy in Ranchi, Jharkhand | ${tag.name} Recovery Insights by The RNB Clinic`,
+      title: `${tag.name} Pain Relief Tips, Exercise Guidance & Physiotherapy Recovery Insights`,
       description: `Browse physiotherapy articles tagged "${tag.name}" from The RNB Clinic, Ranchi.`,
       path: `/blog/tag/${slug}`,
       keywords: [

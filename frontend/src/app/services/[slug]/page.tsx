@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const service = res.data?.[0]
     if (!service) return {}
     return buildMetadata({
-      title: service.seo_title || `Physiotherapy in Ranchi, Jharkhand for ${service.name} | Expert Treatment at The RNB Clinic`,
+      title: service.seo_title || `${service.name} Therapy, Assessment Protocols & Targeted Rehabilitation Program`,
       description: service.seo_description || `${service.name} treatment through Physiotherapy in Ranchi, Jharkhand with targeted sessions, hands-on care, and progression tracking. Start Physiotherapy in Ranchi, Jharkhand for lasting mobility and pain relief.`,
       ogImage: service.og_image || service.featured_image,
       path: `/services/${service.slug}`,

@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   } catch { /* fallback */ }
 
   return buildMetadata({
-    title: 'Physiotherapy in Ranchi, Jharkhand for Pain Relief & Rehabilitation | The RNB Clinic',
+    title: 'Best Physiotherapy Clinic for Pain Relief, Sports Injury Rehab & Neuro Recovery | Ranchi, Jharkhand',
     description: 'The RNB Clinic offers Physiotherapy in Ranchi, Jharkhand for back pain, sports injuries, stroke rehab, and mobility care. Trusted Physiotherapy in Ranchi, Jharkhand with personalized treatment plans and expert therapists.',
     path: '/',
     keywords: [

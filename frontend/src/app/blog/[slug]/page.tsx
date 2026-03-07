@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = res.data?.[0]
     if (!post) return {}
     return buildMetadata({
-      title: post.seo_title || `Physiotherapy in Ranchi, Jharkhand | ${post.title} by The RNB Clinic Experts`,
+      title: post.seo_title || `${post.title} | Expert Physio Advice, Recovery Strategies & Pain Management`,
       description: post.seo_description || `${post.title}: expert guidance on Physiotherapy in Ranchi, Jharkhand with practical recovery steps. Learn evidence-based Physiotherapy in Ranchi, Jharkhand from The RNB Clinic care team.`,
       ogImage: post.og_image || post.featured_image,
       path: `/blog/${post.slug}`,
