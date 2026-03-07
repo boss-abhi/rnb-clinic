@@ -22,11 +22,16 @@ async function strapiRequest<T>(
     url.searchParams.set(key, String(value))
   })
 
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  if (READ_TOKEN) {
+    headers.Authorization = `Bearer ${READ_TOKEN}`
+  }
+
   const res = await fetch(url.toString(), {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${READ_TOKEN}`,
-    },
+    headers,
     ...options,
   })
 
