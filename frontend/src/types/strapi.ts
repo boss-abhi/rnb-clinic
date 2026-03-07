@@ -164,6 +164,7 @@ export interface SiteSetting {
   documentId: string
   clinic_name: string
   tagline: string | null
+  meta_description?: string | null
   phone: string | null
   whatsapp: string | null
   email: string | null
