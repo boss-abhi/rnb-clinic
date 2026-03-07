@@ -98,6 +98,7 @@ export interface BlogPost {
   og_image: StrapiMedia | null
   reading_time: number | null
   ranchi_reference: boolean
+  updatedAt?: string | null
   publishedAt: string | null
 }
 
