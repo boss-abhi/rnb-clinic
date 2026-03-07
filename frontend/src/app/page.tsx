@@ -22,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
   } catch { /* fallback */ }
 
   return buildMetadata({
-    title: settings?.tagline ? `Expert Physiotherapy — ${settings.tagline}` : null,
-    description: 'The RNB Clinic, Ranchi — expert physiotherapy for back pain, sports injuries, stroke rehab, knee pain, and more. Book your appointment today.',
+    title: 'Best Physiotherapy in Ranchi, Jharkhand for Pain Relief, Sports Injury Rehab, Stroke Recovery, Mobility Care',
+    description: 'The RNB Clinic offers Physiotherapy in Ranchi, Jharkhand for back pain, sports injuries, stroke rehab, and mobility care. Trusted Physiotherapy in Ranchi, Jharkhand with personalized treatment plans and expert therapists.',
     path: '/',
     keywords: [
       'pain relief physiotherapy ranchi',

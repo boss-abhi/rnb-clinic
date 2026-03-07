@@ -23,7 +23,11 @@ const DEFAULT_KEYWORDS = [
 
 export function buildTitle(pageTitle?: string | null): string {
   if (!pageTitle) return `${SITE_NAME} — Expert Physiotherapy Care`
-  return `${pageTitle} | ${SITE_NAME}`
+
+  const cleanTitle = pageTitle.trim()
+  if (cleanTitle.includes(SITE_NAME) || cleanTitle.length >= 110) return cleanTitle
+
+  return `${cleanTitle} | ${SITE_NAME}`
 }
 
 function normalizeKeyword(value: string): string {

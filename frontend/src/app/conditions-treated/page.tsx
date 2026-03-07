@@ -12,8 +12,8 @@ export const revalidate = 300
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: 'Conditions Treated',
-    description: 'Browse the full list of conditions treated at The RNB Clinic, Ranchi — from back pain and sciatica to stroke recovery, sports injuries, and more.',
+    title: 'Conditions Treated with Physiotherapy in Ranchi, Jharkhand | Back Pain, Sciatica, Stroke, Sports Injuries',
+    description: 'Browse conditions managed through Physiotherapy in Ranchi, Jharkhand including sciatica, back pain, stroke recovery, and sports injuries. The RNB Clinic provides targeted Physiotherapy in Ranchi, Jharkhand based on condition-specific rehab plans.',
     path: '/conditions-treated',
     keywords: [
       'conditions treated by physiotherapy',

@@ -8,8 +8,8 @@ export const revalidate = 300
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: 'Physiotherapy Services',
-    description: 'Explore our full range of physiotherapy services in Ranchi — back pain, sports injuries, neuro rehab, joint pain, paediatric physio, and more.',
+    title: 'Physiotherapy Services in Ranchi, Jharkhand | Advanced Treatment for Back Pain, Sports Injuries, Neuro Rehab',
+    description: 'Explore comprehensive Physiotherapy in Ranchi, Jharkhand for pain relief, posture correction, neuro rehab, and sports recovery. Our clinic provides Physiotherapy in Ranchi, Jharkhand with structured protocols and measurable progress tracking.',
     path: '/services',
     keywords: [
       'physiotherapy treatments ranchi',

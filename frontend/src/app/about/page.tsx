@@ -10,8 +10,8 @@ export const revalidate = 600
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: 'About Us',
-    description: 'Meet the expert physiotherapy team at The RNB Clinic, Ranchi. Learn about our mission, values, and commitment to evidence-based patient care.',
+    title: 'About The RNB Clinic | Expert Physiotherapy in Ranchi, Jharkhand with Experienced Rehab Specialists',
+    description: 'Meet The RNB Clinic team delivering Physiotherapy in Ranchi, Jharkhand through evidence-based care, advanced rehab methods, and patient-focused recovery. Learn why families trust our Physiotherapy in Ranchi, Jharkhand for long-term results.',
     path: '/about',
     keywords: [
       'about rnb clinic ranchi',
