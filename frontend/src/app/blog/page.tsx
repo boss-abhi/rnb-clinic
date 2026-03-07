@@ -10,7 +10,7 @@ export const revalidate = 120
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: 'Physiotherapy Blog in Ranchi, Jharkhand | Expert Guides on Pain Relief, Recovery Exercises, and Rehab Care',
+    title: 'Physiotherapy in Ranchi, Jharkhand Blog | Expert Recovery Tips and Treatment Guides',
     description: 'Read expert articles on Physiotherapy in Ranchi, Jharkhand including pain management, movement recovery, and injury prevention. Our blog simplifies Physiotherapy in Ranchi, Jharkhand with practical advice you can apply daily.',
     path: '/blog',
     keywords: [

@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const cat = res.data.find((c) => c.slug === slug)
     if (!cat) return {}
     return buildMetadata({
-      title: `${cat.name} Physiotherapy Articles in Ranchi, Jharkhand | The RNB Clinic Health Blog`,
+      title: `Physiotherapy in Ranchi, Jharkhand | ${cat.name} Treatment Articles by The RNB Clinic`,
       description: cat.description || `Browse physiotherapy articles in the ${cat.name} category from The RNB Clinic, Ranchi.`,
       path: `/blog/category/${slug}`,
       keywords: [
