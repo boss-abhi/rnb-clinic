@@ -8,7 +8,7 @@ export const revalidate = 300
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
-    title: 'Manual Therapy, Dry Needling, Post-Surgery Rehab & Sports Physio Services',
+    title: 'Physiotherapy Services: Manual Therapy, Dry Needling, Sports Injury Rehab, Neuro Rehab, Post-Surgery Recovery',
     description: 'Explore comprehensive Physiotherapy in Ranchi, Jharkhand for pain relief, posture correction, neuro rehab, and sports recovery. Our clinic provides Physiotherapy in Ranchi, Jharkhand with structured protocols and measurable progress tracking.',
     path: '/services',
     keywords: [
