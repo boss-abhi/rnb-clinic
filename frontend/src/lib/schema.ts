@@ -1,7 +1,7 @@
 import type { BlogPost, Service, FAQ } from '@/types/strapi'
 import { getStrapiImageUrl } from './strapi'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thernbclinic.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.thernbclinic.com'
 
 export function medicalClinicSchema(settings: {
   clinic_name: string

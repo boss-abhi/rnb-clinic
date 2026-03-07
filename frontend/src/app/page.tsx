@@ -25,6 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
     title: settings?.tagline ? `Expert Physiotherapy — ${settings.tagline}` : null,
     description: 'The RNB Clinic, Ranchi — expert physiotherapy for back pain, sports injuries, stroke rehab, knee pain, and more. Book your appointment today.',
     path: '/',
+    keywords: [
+      'pain relief physiotherapy ranchi',
+      'neuro rehab clinic ranchi',
+      'sports injury physio ranchi',
+      'knee and back pain treatment ranchi',
+      'book physiotherapy consultation ranchi',
+    ],
   })
 }
 

@@ -11,6 +11,11 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Book Appointment',
     description: 'Book a physiotherapy appointment at The RNB Clinic, Ranchi. Choose your service, preferred date and time, and our team will confirm your booking.',
     path: '/book-appointment',
+    keywords: [
+      'book physiotherapy appointment online',
+      'schedule physiotherapist visit ranchi',
+      'same day physio booking ranchi',
+    ],
   })
 }
 

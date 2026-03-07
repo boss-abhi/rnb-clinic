@@ -13,6 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'About Us',
     description: 'Meet the expert physiotherapy team at The RNB Clinic, Ranchi. Learn about our mission, values, and commitment to evidence-based patient care.',
     path: '/about',
+    keywords: [
+      'about rnb clinic ranchi',
+      'experienced physiotherapists ranchi',
+      'evidence based physiotherapy team',
+      'rehabilitation specialists ranchi',
+    ],
   })
 }
 

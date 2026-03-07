@@ -5,7 +5,8 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import FloatingActions from '@/components/layout/FloatingActions'
-import { getSiteSettings, getStrapiImageUrl } from '@/lib/strapi'
+import { getSiteSettings } from '@/lib/strapi'
+import { buildMetadata } from '@/lib/seo'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -29,24 +30,42 @@ const FIXED_CONTACT = {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  let faviconUrl = '/favicon.ico'
+  let dynamicTitle: string | null = null
+  let dynamicDescription: string | null = null
+
   try {
     const res = await getSiteSettings()
-    if (res.data?.favicon) {
-      faviconUrl = getStrapiImageUrl(res.data.favicon)
-    }
+    dynamicTitle = res.data?.clinic_name ? `${res.data.clinic_name} — Physiotherapy in Ranchi` : null
+    dynamicDescription = res.data?.meta_description || null
   } catch {
-    // fallback to static favicon
+    // CMS unavailable in production-safe mode; static fallback below
   }
 
+  const metadata = buildMetadata({
+    title: dynamicTitle,
+    description:
+      dynamicDescription ||
+      'The RNB Clinic provides advanced physiotherapy in Ranchi for pain relief, recovery, mobility, and long-term rehabilitation.',
+    path: '/',
+    keywords: [
+      'neuro physiotherapy ranchi',
+      'orthopaedic physiotherapy ranchi',
+      'physio clinic near lalpur ranchi',
+      'sports physiotherapy clinic ranchi',
+      'posture correction physiotherapy',
+      'joint pain rehab ranchi',
+    ],
+  })
+
   return {
-    title: 'The RNB Clinic, Ranchi — Expert Physiotherapy',
-    description: 'Leading physiotherapy clinic in Ranchi offering expert treatment for back pain, sports injuries, stroke rehabilitation, and more.',
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://thernbclinic.com'),
+    ...metadata,
     icons: {
-      icon: faviconUrl,
-      shortcut: faviconUrl,
-      apple: faviconUrl,
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/rnb-clinic-logo-original.png', type: 'image/png', sizes: '512x512' },
+      ],
+      shortcut: ['/favicon.ico'],
+      apple: [{ url: '/rnb-clinic-logo-original.png', sizes: '180x180', type: 'image/png' }],
     },
   }
 }

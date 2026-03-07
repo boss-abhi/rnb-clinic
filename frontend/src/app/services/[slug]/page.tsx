@@ -32,6 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: service.seo_description || service.short_description,
       ogImage: service.og_image || service.featured_image,
       path: `/services/${service.slug}`,
+      keywords: [
+        `${service.name} ranchi`,
+        `physiotherapy for ${service.name.toLowerCase()}`,
+        'personalized rehabilitation plan',
+      ],
     })
   } catch {
     return {}
@@ -54,7 +59,7 @@ export default async function ServicePage({ params }: Props) {
     c.related_services?.some((rs) => rs.slug === service.slug)
   )
 
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thernbclinic.com'
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.thernbclinic.com'
 
   return (
     <>

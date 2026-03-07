@@ -14,6 +14,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Patient Testimonials',
     description: 'Read real patient testimonials from The RNB Clinic, Ranchi. See why our patients trust us for physiotherapy, pain relief, and rehabilitation.',
     path: '/testimonials',
+    keywords: [
+      'physiotherapy patient reviews ranchi',
+      'rnb clinic testimonials',
+      'rehabilitation outcomes ranchi',
+      'physio success stories',
+    ],
   })
 }
 

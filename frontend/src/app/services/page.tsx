@@ -11,6 +11,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Physiotherapy Services',
     description: 'Explore our full range of physiotherapy services in Ranchi — back pain, sports injuries, neuro rehab, joint pain, paediatric physio, and more.',
     path: '/services',
+    keywords: [
+      'physiotherapy treatments ranchi',
+      'manual therapy and dry needling ranchi',
+      'sports rehab services ranchi',
+      'neurological physiotherapy services',
+    ],
   })
 }
 

@@ -30,6 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${cat.name} — Blog`,
       description: cat.description || `Browse physiotherapy articles in the ${cat.name} category from The RNB Clinic, Ranchi.`,
       path: `/blog/category/${slug}`,
+      keywords: [
+        `${cat.name} physiotherapy articles`,
+        'rehab education resources',
+        'evidence based treatment information',
+      ],
     })
   } catch {
     return {}

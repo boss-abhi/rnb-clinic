@@ -15,6 +15,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Conditions Treated',
     description: 'Browse the full list of conditions treated at The RNB Clinic, Ranchi — from back pain and sciatica to stroke recovery, sports injuries, and more.',
     path: '/conditions-treated',
+    keywords: [
+      'conditions treated by physiotherapy',
+      'sciatica and slip disc treatment ranchi',
+      'stroke rehab and mobility recovery',
+      'sports and orthopaedic injury rehab',
+    ],
   })
 }
 

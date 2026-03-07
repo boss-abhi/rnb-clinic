@@ -13,6 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Contact Us',
     description: 'Contact The RNB Clinic, Ranchi. Call, WhatsApp, or fill out our online form to get in touch with our physiotherapy team.',
     path: '/contact',
+    keywords: [
+      'contact physiotherapy clinic ranchi',
+      'physiotherapist phone number ranchi',
+      'whatsapp physiotherapy appointment ranchi',
+      'lalpur physiotherapy clinic address',
+    ],
   })
 }
 
@@ -30,7 +36,7 @@ export default async function ContactPage() {
     settings = res.data
   } catch { /* fallback */ }
 
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thernbclinic.com'
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.thernbclinic.com'
   const phone = FIXED_CONTACT.phone
   const whatsapp = FIXED_CONTACT.whatsapp
   const email = settings?.email || 'info@thernbclinic.com'

@@ -13,6 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Physiotherapy Blog',
     description: 'Expert physiotherapy articles, patient guides, and health tips from The RNB Clinic, Ranchi. Evidence-based advice for pain relief and recovery.',
     path: '/blog',
+    keywords: [
+      'physiotherapy health blog india',
+      'pain management exercise guides',
+      'rehabilitation education articles',
+      'expert physio tips ranchi',
+    ],
   })
 }
 

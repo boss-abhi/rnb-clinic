@@ -40,6 +40,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.seo_description || post.excerpt,
       ogImage: post.og_image || post.featured_image,
       path: `/blog/${post.slug}`,
+      keywords: [
+        post.title,
+        ...(post.tags?.map((t) => t.name) || []),
+        'physiotherapy knowledge article',
+      ],
+      type: 'article',
+      publishedTime: post.publishedAt || undefined,
+      modifiedTime: post.updatedAt || post.publishedAt || undefined,
     })
   } catch {
     return {}
@@ -63,7 +71,7 @@ export default async function BlogPostPage({ params }: Props) {
   const imgUrl = post.featured_image ? getStrapiImageUrl(post.featured_image) : null
   const fallbackImgUrl = getBlogFallbackImage(post)
   const imgAlt = post.featured_image_alt || post.featured_image?.alternativeText || post.title
-  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thernbclinic.com'
+  const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.thernbclinic.com'
 
   const blogSchema = blogPostingSchema(post, `/blog/${post.slug}`)
   const faqSchema = post.faqs && post.faqs.length >= 3 ? faqPageSchema(post.faqs) : null
