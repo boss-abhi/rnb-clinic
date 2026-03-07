@@ -107,9 +107,6 @@ export function buildMetadata(opts: MetaOptions): Metadata {
       publishedTime,
       modifiedTime,
     },
-    facebook: {
-      appId: process.env.NEXT_PUBLIC_FB_APP_ID || undefined,
-    },
     twitter: {
       card: 'summary_large_image',
       title: resolvedTitle,
@@ -136,6 +133,7 @@ export function buildMetadata(opts: MetaOptions): Metadata {
       yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
       yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION || undefined,
       other: {
+      'fb:app_id': process.env.NEXT_PUBLIC_FB_APP_ID || undefined,
         'facebook-domain-verification': process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION || undefined,
       },
     },
