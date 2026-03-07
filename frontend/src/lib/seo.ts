@@ -77,6 +77,12 @@ export function buildMetadata(opts: MetaOptions): Metadata {
   const canonical = `${SITE_URL}${path}`
   const dedupedKeywords = uniqueKeywords([...DEFAULT_KEYWORDS, ...keywords])
 
+  const verificationOther: Record<string, string> = {}
+  if (process.env.NEXT_PUBLIC_FB_APP_ID) verificationOther['fb:app_id'] = process.env.NEXT_PUBLIC_FB_APP_ID
+  if (process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION) {
+    verificationOther['facebook-domain-verification'] = process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION
+  }
+
   return {
     title: resolvedTitle,
     description: resolvedDescription,
@@ -132,10 +138,7 @@ export function buildMetadata(opts: MetaOptions): Metadata {
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
       yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
       yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION || undefined,
-      other: {
-      'fb:app_id': process.env.NEXT_PUBLIC_FB_APP_ID || undefined,
-        'facebook-domain-verification': process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION || undefined,
-      },
+      ...(Object.keys(verificationOther).length > 0 ? { other: verificationOther } : {}),
     },
     other: {
       'theme-color': '#0B5ED7',
