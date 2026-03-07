@@ -45,13 +45,14 @@ export default async function BlogCategoryPage({ params }: Props) {
   const { slug } = await params
 
   const [postsRes, catsRes] = await Promise.allSettled([
-    getBlogPosts({ 'filters[categories][slug][$eq]': slug, 'pagination[pageSize]': 20 }),
+    getBlogPosts({ 'pagination[pageSize]': 200 }),
     getCategories(),
   ])
 
-  const posts = postsRes.status === 'fulfilled' ? postsRes.value.data : []
+  const allPosts = postsRes.status === 'fulfilled' ? postsRes.value.data : []
   const categories = catsRes.status === 'fulfilled' ? catsRes.value.data : []
   const category = categories.find((c) => c.slug === slug)
+  const posts = allPosts.filter((post) => post.categories?.some((c) => c.slug === slug))
 
   if (!category && categories.length > 0) notFound()
 

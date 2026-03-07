@@ -44,13 +44,14 @@ export default async function BlogTagPage({ params }: Props) {
   const { slug } = await params
 
   const [postsRes, tagsRes] = await Promise.allSettled([
-    getBlogPosts({ 'filters[tags][slug][$eq]': slug, 'pagination[pageSize]': 20 }),
+    getBlogPosts({ 'pagination[pageSize]': 200 }),
     getTags(),
   ])
 
-  const posts = postsRes.status === 'fulfilled' ? postsRes.value.data : []
+  const allPosts = postsRes.status === 'fulfilled' ? postsRes.value.data : []
   const tags = tagsRes.status === 'fulfilled' ? tagsRes.value.data : []
   const tag = tags.find((t) => t.slug === slug)
+  const posts = allPosts.filter((post) => post.tags?.some((t) => t.slug === slug))
 
   if (!tag && tags.length > 0) notFound()
 

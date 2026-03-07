@@ -53,11 +53,16 @@ export async function getServices(params?: Record<string, string | number | bool
 }
 
 export async function getServiceBySlug(slug: string) {
-  return strapiRequest<StrapiResponse<import('@/types/strapi').Service[]>>(
+  const res = await strapiRequest<StrapiResponse<import('@/types/strapi').Service[]>>(
     '/services',
-    { 'filters[slug][$eq]': slug, populate: '*', 'pagination[pageSize]': 1 },
+    { sort: 'order:asc', 'pagination[pageSize]': 100, populate: '*' },
     { next: { revalidate: 300 } },
   )
+
+  return {
+    ...res,
+    data: (res.data || []).filter((service) => service.slug === slug).slice(0, 1),
+  }
 }
 
 export async function getServiceSlugs() {
@@ -93,11 +98,16 @@ export async function getBlogPosts(params?: Record<string, string | number | boo
 }
 
 export async function getBlogPostBySlug(slug: string) {
-  return strapiRequest<StrapiResponse<import('@/types/strapi').BlogPost[]>>(
+  const res = await strapiRequest<StrapiResponse<import('@/types/strapi').BlogPost[]>>(
     '/blog-posts',
-    { 'filters[slug][$eq]': slug, populate: '*', 'pagination[pageSize]': 1 },
+    { sort: 'publishedAt:desc', 'pagination[pageSize]': 200, populate: '*' },
     { next: { revalidate: 120 } },
   )
+
+  return {
+    ...res,
+    data: (res.data || []).filter((post) => post.slug === slug).slice(0, 1),
+  }
 }
 
 export async function getBlogPostSlugs() {
