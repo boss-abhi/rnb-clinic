@@ -36,7 +36,13 @@ export async function generateMetadata(): Promise<Metadata> {
   try {
     const res = await getSiteSettings()
     dynamicTitle = res.data?.clinic_name ? `${res.data.clinic_name} — Physiotherapy in Ranchi` : null
-    dynamicDescription = res.data?.meta_description || null
+
+    const clinic = res.data?.clinic_name || 'The RNB Clinic'
+    const tagline = res.data?.tagline || 'expert physiotherapy and rehabilitation'
+
+    dynamicDescription =
+      res.data?.meta_description?.trim() ||
+      `${clinic} offers ${tagline.toLowerCase()} in Ranchi for pain relief, injury recovery, and long-term mobility care.`
   } catch {
     // CMS unavailable in production-safe mode; static fallback below
   }
