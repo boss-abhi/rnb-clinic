@@ -11,14 +11,14 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#0B5ED7',
     icons: [
       {
-        src: '/favicon.ico',
-        sizes: 'any',
-        type: 'image/x-icon',
-      },
-      {
         src: '/rnb-clinic-logo-original.png',
         sizes: '512x512',
         type: 'image/png',
+      },
+      {
+        src: '/favicon.ico',
+        sizes: 'any',
+        type: 'image/x-icon',
       },
     ],
   }

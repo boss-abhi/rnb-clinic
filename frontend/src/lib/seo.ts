@@ -25,7 +25,7 @@ export function buildTitle(pageTitle?: string | null): string {
   if (!pageTitle) return `${SITE_NAME} — Expert Physiotherapy Care`
 
   const cleanTitle = pageTitle.trim()
-  if (cleanTitle.includes(SITE_NAME) || cleanTitle.length >= 110) return cleanTitle
+  if (cleanTitle.includes(SITE_NAME) || cleanTitle.includes('The RNB Clinic') || cleanTitle.length >= 110) return cleanTitle
 
   return `${cleanTitle} | ${SITE_NAME}`
 }

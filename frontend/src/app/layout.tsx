@@ -63,10 +63,10 @@ export async function generateMetadata(): Promise<Metadata> {
     ...metadata,
     icons: {
       icon: [
-        { url: '/favicon.ico', sizes: 'any' },
         { url: '/rnb-clinic-logo-original.png', type: 'image/png', sizes: '512x512' },
+        { url: '/favicon.ico', sizes: 'any' },
       ],
-      shortcut: ['/favicon.ico'],
+      shortcut: ['/rnb-clinic-logo-original.png'],
       apple: [{ url: '/rnb-clinic-logo-original.png', sizes: '180x180', type: 'image/png' }],
     },
   }
