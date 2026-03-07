@@ -8,7 +8,7 @@ const services = [
     category: 'Musculoskeletal & Orthopaedic',
     short_description:
       'Comprehensive physiotherapy for lower back pain, disc herniation, sciatica, and spinal rehabilitation.',
-    seo_title: 'Back & Spine Treatment | The RNB Clinic Ranchi',
+    seo_title: 'Back Pain, Slip Disc & Sciatica Physiotherapy Treatment in Ranchi | The RNB Clinic',
     seo_description:
       'Expert back pain and spine treatment at The RNB Clinic, Ranchi. Evidence-based physiotherapy for disc herniation, sciatica, spondylosis and more.',
     order: 1,
@@ -47,7 +47,7 @@ const services = [
     category: 'Musculoskeletal & Orthopaedic',
     short_description:
       'Specialist treatment for cervical spondylosis, frozen shoulder, rotator cuff injuries, and neck pain.',
-    seo_title: 'Neck & Shoulder Pain Treatment | The RNB Clinic Ranchi',
+    seo_title: 'Neck Pain, Cervical Spondylosis & Frozen Shoulder Physiotherapy in Ranchi | The RNB Clinic',
     seo_description:
       'Relieve neck pain and shoulder stiffness with expert physiotherapy at The RNB Clinic, Ranchi. Treating frozen shoulder, cervical spondylosis, and rotator cuff injuries.',
     order: 2,
@@ -75,7 +75,7 @@ const services = [
     category: 'Musculoskeletal & Orthopaedic',
     short_description:
       'Physiotherapy for knee pain, osteoarthritis, ligament injuries, and post-joint replacement recovery.',
-    seo_title: 'Knee & Joint Rehabilitation | The RNB Clinic Ranchi',
+    seo_title: 'Knee Pain, ACL Injury & Joint Rehabilitation Physiotherapy in Ranchi | The RNB Clinic',
     seo_description:
       'Effective knee pain relief and joint rehabilitation at The RNB Clinic, Ranchi. Specialists in ACL recovery, osteoarthritis, and post-surgery rehab.',
     order: 3,
@@ -103,7 +103,7 @@ const services = [
     category: 'Sports & Exercise Therapy',
     short_description:
       'Fast-track rehabilitation for sports injuries to get athletes back to peak performance safely.',
-    seo_title: 'Sports Injury Physiotherapy | The RNB Clinic Ranchi',
+    seo_title: 'Sports Injury Physiotherapy, Return-to-Play Rehab & Performance Recovery in Ranchi | The RNB Clinic',
     seo_description:
       'Sports injury rehabilitation at The RNB Clinic Ranchi. Expert physiotherapy for ACL injuries, tennis elbow, muscle strains and sports performance recovery.',
     order: 4,
@@ -131,7 +131,7 @@ const services = [
     category: 'Neurological Rehabilitation',
     short_description:
       'Specialist neuro-physiotherapy for stroke survivors, Parkinson\'s disease, and spinal cord injury recovery.',
-    seo_title: 'Stroke & Neurological Rehabilitation | The RNB Clinic Ranchi',
+    seo_title: 'Stroke Rehabilitation, Neuro Physiotherapy & Balance Training in Ranchi | The RNB Clinic',
     seo_description:
       'Specialist neurological physiotherapy at The RNB Clinic Ranchi for stroke recovery, Parkinson\'s disease, MS, and brain injury rehabilitation.',
     order: 5,
@@ -159,7 +159,7 @@ const services = [
     category: 'Musculoskeletal & Orthopaedic',
     short_description:
       'Structured physiotherapy recovery programmes after orthopaedic and spinal surgery.',
-    seo_title: 'Post-Surgery Physiotherapy | The RNB Clinic Ranchi',
+    seo_title: 'Post-Surgery Physiotherapy, Mobility Recovery & Strength Rehab in Ranchi | The RNB Clinic',
     seo_description:
       'Accelerate your recovery after orthopaedic or spinal surgery with expert physiotherapy at The RNB Clinic, Ranchi. Evidence-based protocols for knee, hip, spine, and shoulder surgery.',
     order: 6,
@@ -185,7 +185,7 @@ const services = [
     category: 'Paediatric Physiotherapy',
     short_description:
       'Child-centred physiotherapy for developmental conditions, cerebral palsy, and musculoskeletal problems in children.',
-    seo_title: 'Paediatric Physiotherapy | The RNB Clinic Ranchi',
+    seo_title: 'Paediatric Physiotherapy for Cerebral Palsy, Delays & Gait Issues in Ranchi | The RNB Clinic',
     seo_description:
       'Gentle, child-centred physiotherapy for cerebral palsy, developmental delays, scoliosis, and orthopaedic conditions in children at The RNB Clinic, Ranchi.',
     order: 7,
@@ -211,7 +211,7 @@ const services = [
     category: 'Musculoskeletal & Orthopaedic',
     short_description:
       'Specialist physiotherapy for pregnancy-related pain, pelvic floor issues, and post-natal recovery.',
-    seo_title: "Women's Health Physiotherapy | The RNB Clinic Ranchi",
+    seo_title: "Women's Health Physiotherapy for Pelvic Floor, Pregnancy Pain & Postnatal Recovery in Ranchi | The RNB Clinic",
     seo_description:
       "Expert women's health physiotherapy at The RNB Clinic Ranchi for pregnancy back pain, pelvic floor rehabilitation, diastasis recti, and post-natal recovery.",
     order: 8,
@@ -237,7 +237,7 @@ const services = [
     category: 'Musculoskeletal & Orthopaedic',
     short_description:
       'Advanced electrotherapy modalities including TENS, IFT, ultrasound, and laser therapy for pain relief.',
-    seo_title: 'Electrotherapy & Ultrasound Physiotherapy | The RNB Clinic Ranchi',
+    seo_title: 'Electrotherapy, IFT, TENS & Ultrasound Pain Relief Physiotherapy in Ranchi | The RNB Clinic',
     seo_description:
       'State-of-the-art electrotherapy including TENS, IFT, therapeutic ultrasound, and laser at The RNB Clinic, Ranchi for effective pain management.',
     order: 9,
@@ -263,7 +263,7 @@ const services = [
     category: 'Musculoskeletal & Orthopaedic',
     short_description:
       'Advanced hands-on physiotherapy using dry needling, joint mobilisation, and soft tissue techniques.',
-    seo_title: 'Dry Needling & Manual Therapy | The RNB Clinic Ranchi',
+    seo_title: 'Dry Needling, Manual Therapy & Trigger Point Pain Relief in Ranchi | The RNB Clinic',
     seo_description:
       'Certified dry needling and manual therapy at The RNB Clinic, Ranchi for trigger point release, joint stiffness, and chronic muscle pain.',
     order: 10,
