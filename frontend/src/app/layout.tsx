@@ -22,6 +22,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 })
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
+const RANCHI_META_DESCRIPTION = 'The RNB Clinic in Ranchi, Jharkhand delivers physiotherapy for back and neck pain, sports injuries, post-surgery rehab, stroke recovery, joint mobility, posture correction, preventive care with expert therapists, modern techniques, and personalized plans.'
 
 const FIXED_CONTACT = {
   phone: '+91 70424 90276',
@@ -37,12 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const res = await getSiteSettings()
     dynamicTitle = res.data?.clinic_name ? `${res.data.clinic_name} — Physiotherapy in Ranchi` : null
 
-    const clinic = res.data?.clinic_name || 'The RNB Clinic'
-    const tagline = res.data?.tagline || 'expert physiotherapy and rehabilitation'
-
-    dynamicDescription =
-      res.data?.meta_description?.trim() ||
-      `${clinic} offers ${tagline.toLowerCase()} in Ranchi for pain relief, injury recovery, and long-term mobility care.`
+    dynamicDescription = res.data?.meta_description?.trim() || RANCHI_META_DESCRIPTION
   } catch {
     // CMS unavailable in production-safe mode; static fallback below
   }
@@ -51,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: dynamicTitle,
     description:
       dynamicDescription ||
-      'The RNB Clinic provides advanced physiotherapy in Ranchi for pain relief, recovery, mobility, and long-term rehabilitation.',
+      RANCHI_META_DESCRIPTION,
     path: '/',
     keywords: [
       'neuro physiotherapy ranchi',

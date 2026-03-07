@@ -6,7 +6,7 @@ export async function seedSiteSettings(): Promise<void> {
     clinic_name: 'The RNB Clinic',
     tagline: 'Expert Physiotherapy & Rehabilitation in Ranchi',
     meta_description:
-      'The RNB Clinic in Ranchi offers expert physiotherapy for pain relief, sports injuries, post-surgery rehab, and neurological recovery with personalized care plans.',
+      'The RNB Clinic in Ranchi, Jharkhand delivers physiotherapy for back and neck pain, sports injuries, post-surgery rehab, stroke recovery, joint mobility, posture correction, preventive care with expert therapists, modern techniques, and personalized plans.',
     phone: '+91 70424 90276',
     whatsapp: '+91 70424 90276',
     email: 'thernbclinic@gmail.com',
